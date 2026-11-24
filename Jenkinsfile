@@ -1,15 +1,31 @@
+
 pipeline {
-  agent any
-  stages {
-    stage("Checkout") {
-      steps {
-        git url: "https://github.com/kimkaminss/cloud-lab.git", branch: "main"
-      }
+
+    agent any
+
+    stages {
+
+        stage("Checkout") {
+
+            steps {
+
+                git url: "https://github.com/kimkaminss/cloud-lab.git", branch: "main"
+
+            }
+
+        }
+
+        stage("Build") {
+
+            steps {
+
+                sh "docker build -t myflask:test ."
+
+            }
+
+        }
+
     }
-    stage("Build") {
-      steps {
-        sh "docker build -t myflask:test ."
-      }
-    }
-  }
+
 }
+
